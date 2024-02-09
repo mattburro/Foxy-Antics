@@ -1,9 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@onready var sprite_2d = $Sprite2D
-@onready var animation_player = $AnimationPlayer
-@onready var debug_label = $DebugLabel
-@onready var sound_player = $SoundPlayer
+enum PLAYER_STATE { IDLE, RUN, JUMP, FALL, HURT }
 
 const GRAVITY: float = 1000.0
 const MAX_FALL_SPEED: float = 400.0
@@ -11,9 +8,17 @@ const JUMP_VELOCITY: float = -400.0
 const RUN_SPEED: float = 120.0
 const HURT_TIME: float = 0.3
 
-enum PLAYER_STATE { IDLE, RUN, JUMP, FALL, HURT }
+static var Instance: Player
 
 var state: PLAYER_STATE = PLAYER_STATE.IDLE
+
+@onready var sprite_2d = $Sprite2D
+@onready var animation_player = $AnimationPlayer
+@onready var debug_label = $DebugLabel
+@onready var sound_player = $SoundPlayer
+
+func _ready():
+	Instance = self
 
 func _process(delta):
 	update_debug_text()
