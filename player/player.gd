@@ -2,6 +2,8 @@ class_name Player extends CharacterBody2D
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var debug_label = $DebugLabel
+@onready var sound_player = $SoundPlayer
 
 const GRAVITY: float = 1000.0
 const MAX_FALL_SPEED: float = 400.0
@@ -13,6 +15,9 @@ enum PLAYER_STATE { IDLE, RUN, JUMP, FALL, HURT }
 
 var state: PLAYER_STATE = PLAYER_STATE.IDLE
 
+func _process(delta):
+	update_debug_text()
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -22,6 +27,13 @@ func _physics_process(delta):
 	calculate_state()
 	play_state_animation()
 
+func update_debug_text():
+	debug_label.text = "on floor:%s\nstate:%s\nvelocity:%.0f, %.0f" % [
+		is_on_floor(),
+		PLAYER_STATE.keys()[state],
+		velocity.x, velocity.y
+	]
+
 func get_input():
 	velocity.x = Input.get_axis("left", "right") * RUN_SPEED
 	
@@ -30,6 +42,7 @@ func get_input():
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		SoundManager.play_sound(sound_player, SoundManager.SOUND_JUMP)
 	
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
 
@@ -39,14 +52,24 @@ func calculate_state():
 	
 	if is_on_floor():
 		if velocity.x == 0:
-			state = PLAYER_STATE.IDLE
+			set_state(PLAYER_STATE.IDLE)
 		else:
-			state = PLAYER_STATE.RUN
+			set_state(PLAYER_STATE.RUN)
 	else:
 		if velocity.y > 0:
-			state = PLAYER_STATE.FALL
+			set_state(PLAYER_STATE.FALL)
 		else:
-			state = PLAYER_STATE.JUMP
+			set_state(PLAYER_STATE.JUMP)
+
+func set_state(new_state: PLAYER_STATE):
+	if new_state == state:
+		return
+	
+	if state == PLAYER_STATE.FALL:
+		if new_state == PLAYER_STATE.IDLE or new_state == PLAYER_STATE.RUN:
+			SoundManager.play_sound(sound_player, SoundManager.SOUND_LAND)
+	
+	state = new_state
 
 func play_state_animation():
 	match state:
