@@ -3,11 +3,16 @@
 [ext_resource type="Script" path="res://enemies/enemy_base/enemy_base.gd" id="1_860wb"]
 
 [node name="EnemyBase" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_860wb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_screen_exited"]

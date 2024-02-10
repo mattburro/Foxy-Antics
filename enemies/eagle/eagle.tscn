@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jp15eqqpepvf"]
+[gd_scene load_steps=11 format=3 uid="uid://jp15eqqpepvf"]
 
 [ext_resource type="PackedScene" uid="uid://blunwmhqi1b4n" path="res://enemies/enemy_base/enemy_base.tscn" id="1_24b54"]
 [ext_resource type="Texture2D" uid="uid://br3afngsg0v8m" path="res://assets/enemies/eagle/eagle-attack.png" id="2_70irg"]
@@ -41,9 +41,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xwk3"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iael"]
 
 [node name="Eagle" instance=ExtResource("1_24b54")]
-collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_q21oh")
 
@@ -61,5 +63,8 @@ target_position = Vector2(0, 200)
 
 [node name="TurnTimer" type="Timer" parent="." index="4"]
 wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_3iael")
 
 [connection signal="timeout" from="TurnTimer" to="." method="on_turn_timer_timeout"]
