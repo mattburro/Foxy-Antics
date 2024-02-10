@@ -6,8 +6,8 @@ const OFF_SCREEN_KILL_ME: float = 1000.0
 
 @export var default_facing: FACING = FACING.LEFT
 @export var points: int = 1
+@export var speed: float = 30.0
 
-var speed: float = 30.0
 var gravity: float = 800.0
 var facing: FACING = default_facing
 var dying: bool = false
@@ -20,7 +20,7 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	pass
+	fallen_off()
 
 func die():
 	if dying:
