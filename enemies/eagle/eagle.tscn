@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://jp15eqqpepvf"]
+
+[ext_resource type="PackedScene" uid="uid://blunwmhqi1b4n" path="res://enemies/enemy_base/enemy_base.tscn" id="1_24b54"]
+[ext_resource type="Texture2D" uid="uid://br3afngsg0v8m" path="res://assets/enemies/eagle/eagle-attack.png" id="2_70irg"]
+[ext_resource type="Script" path="res://enemies/eagle/eagle.gd" id="2_q21oh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfk30"]
+atlas = ExtResource("2_70irg")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01i2o"]
+atlas = ExtResource("2_70irg")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3eh5"]
+atlas = ExtResource("2_70irg")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pftv"]
+atlas = ExtResource("2_70irg")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfcjs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfk30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01i2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3eh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pftv")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6xwk3"]
+
+[node name="Eagle" instance=ExtResource("1_24b54")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_q21oh")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_kfcjs")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_6xwk3")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="3"]
+target_position = Vector2(0, 200)
+
+[node name="TurnTimer" type="Timer" parent="." index="4"]
+wait_time = 3.0
+
+[connection signal="timeout" from="TurnTimer" to="." method="on_turn_timer_timeout"]

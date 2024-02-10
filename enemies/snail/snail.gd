@@ -3,9 +3,6 @@ extends EnemyBase
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var floor_detection = $FloorDetection
 
-func _ready():
-	super._ready()
-
 func _physics_process(delta):
 	super._physics_process(delta)
 	
