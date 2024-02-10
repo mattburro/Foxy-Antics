@@ -50,6 +50,9 @@ func get_input():
 		SoundManager.play_sound(sound_player, SoundManager.SOUND_JUMP)
 	
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
+	
+	if Input.is_action_just_pressed("shoot"):
+		ObjectMaker.create_bullet(ObjectMaker.BULLET_KEY.PLAYER, global_position, Vector2.RIGHT if not sprite_2d.flip_h else Vector2.LEFT, 50.0, 20.0)
 
 func calculate_state():
 	if state == PLAYER_STATE.HURT:

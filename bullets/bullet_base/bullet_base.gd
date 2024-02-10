@@ -8,7 +8,8 @@ func _process(delta):
 	check_life_time(delta)
 	position += _direction * delta
 
-func setup(direction: Vector2, speed: float, life_span: float):
+func setup(spawn_position: Vector2, direction: Vector2, speed: float, life_span: float):
+	global_position = spawn_position
 	_direction = direction.normalized() * speed
 	_life_span = life_span
 
