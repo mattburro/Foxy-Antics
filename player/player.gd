@@ -16,6 +16,7 @@ var state: PLAYER_STATE = PLAYER_STATE.IDLE
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
 @onready var sound_player = $SoundPlayer
+@onready var shooter = $Shooter
 
 func _ready():
 	Instance = self
@@ -52,7 +53,8 @@ func get_input():
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
 	
 	if Input.is_action_just_pressed("shoot"):
-		ObjectMaker.create_bullet(ObjectMaker.BULLET_KEY.PLAYER, global_position, Vector2.RIGHT if not sprite_2d.flip_h else Vector2.LEFT, 50.0, 20.0)
+		var shoot_direction = Vector2.RIGHT if not sprite_2d.flip_h else Vector2.LEFT
+		shooter.shoot(shoot_direction)
 
 func calculate_state():
 	if state == PLAYER_STATE.HURT:
