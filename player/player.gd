@@ -95,4 +95,4 @@ func play_state_animation():
 			animation_player.play("hurt")
 
 func on_hitbox_area_entered(area: Area2D):
-	pass
+	print("Player hit: ", area.name)
