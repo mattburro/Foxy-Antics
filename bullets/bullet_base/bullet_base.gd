@@ -18,5 +18,5 @@ func check_life_time(delta: float):
 	if _life_time > _life_span:
 		queue_free()
 
-func on_area_entered(area: Area2D):
+func on_area_entered(_area: Area2D):
 	queue_free()

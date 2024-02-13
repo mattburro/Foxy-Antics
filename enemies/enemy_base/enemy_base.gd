@@ -16,10 +16,10 @@ var player_ref: Player
 func _ready():
 	player_ref = Player.Instance
 
-func _process(delta):
+func _process(_delta):
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	fallen_off()
 
 func die():
@@ -28,6 +28,8 @@ func die():
 	
 	dying = true
 	SignalManager.on_enemy_hit.emit(points, global_position)
+	ObjectMaker.create_scene(ObjectMaker.SCENE_KEY.EXPLOSION, global_position)
+	ObjectMaker.create_scene(ObjectMaker.SCENE_KEY.PICKUP, global_position)
 	set_physics_process(false)
 	hide()
 	queue_free()
@@ -44,3 +46,4 @@ func on_screen_exited():
 
 func on_hitbox_area_entered(area: Area2D):
 	print("Enemy hit: ", area.name)
+	die()

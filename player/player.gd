@@ -21,7 +21,7 @@ var state: PLAYER_STATE = PLAYER_STATE.IDLE
 func _ready():
 	Instance = self
 
-func _process(delta):
+func _process(_delta):
 	update_debug_text()
 
 func _physics_process(delta):
