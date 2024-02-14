@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct4e5uvs38fek"]
+[gd_scene load_steps=16 format=3 uid="uid://ct4e5uvs38fek"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_8l1hb"]
 [ext_resource type="Texture2D" uid="uid://cmufbkp7qyon1" path="res://assets/player/player.png" id="1_h5myc"]
@@ -115,6 +115,44 @@ _data = {
 "run": SubResource("Animation_2jnmv")
 }
 
+[sub_resource type="Animation" id="Animation_7xt58"]
+resource_name = "invincible"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wrap0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gbivc"]
+_data = {
+"RESET": SubResource("Animation_wrap0"),
+"invincible": SubResource("Animation_7xt58")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13g7w"]
 radius = 8.0
 height = 20.0
@@ -137,6 +175,11 @@ libraries = {
 "": SubResource("AnimationLibrary_8sfvw")
 }
 autoplay = "idle"
+
+[node name="AnimationPlayerInvincible" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gbivc")
+}
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 
@@ -165,4 +208,9 @@ speed = 200.0
 life_span = 10.0
 shoot_delay = 1.0
 
+[node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="on_hitbox_area_entered"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="on_invincible_timer_timeout"]

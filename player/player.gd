@@ -11,12 +11,15 @@ const HURT_TIME: float = 0.3
 static var Instance: Player
 
 var state: PLAYER_STATE = PLAYER_STATE.IDLE
+var invincible: bool = false
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var animation_player_invincible = $AnimationPlayerInvincible
 @onready var debug_label = $DebugLabel
 @onready var sound_player = $SoundPlayer
 @onready var shooter = $Shooter
+@onready var invincible_timer = $InvincibleTimer
 
 func _ready():
 	Instance = self
@@ -34,8 +37,9 @@ func _physics_process(delta):
 	play_state_animation()
 
 func update_debug_text():
-	debug_label.text = "on floor:%s\nstate:%s\nvelocity:%.0f, %.0f" % [
+	debug_label.text = "floor:%s\ninv:%s\n%s\n%.0f, %.0f" % [
 		is_on_floor(),
+		invincible,
 		PLAYER_STATE.keys()[state],
 		velocity.x, velocity.y
 	]
@@ -94,5 +98,21 @@ func play_state_animation():
 		PLAYER_STATE.HURT:
 			animation_player.play("hurt")
 
+func go_invincible():
+	invincible = true
+	invincible_timer.start()
+	animation_player_invincible.play("invincible")
+
+func apply_hit():
+	if invincible:
+		return
+	
+	go_invincible()
+	SoundManager.play_sound(sound_player, SoundManager.SOUND_DAMAGE)
+
 func on_hitbox_area_entered(area: Area2D):
-	print("Player hit: ", area.name)
+	apply_hit()
+
+func on_invincible_timer_timeout():
+	invincible = false
+	animation_player_invincible.stop()
