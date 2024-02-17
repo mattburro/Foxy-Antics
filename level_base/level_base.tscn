@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dihf6jl4gkunf"]
+[gd_scene load_steps=9 format=3 uid="uid://dihf6jl4gkunf"]
 
 [ext_resource type="Texture2D" uid="uid://dbo8s4c403geq" path="res://assets/tiles/Terrain (16x16).png" id="1_wbw04"]
 [ext_resource type="Script" path="res://level_base/level_base.gd" id="1_ymxc8"]
 [ext_resource type="PackedScene" uid="uid://cej83oxkncb8p" path="res://player_camera/player_camera.tscn" id="2_ack6v"]
 [ext_resource type="PackedScene" uid="uid://ct4e5uvs38fek" path="res://player/player.tscn" id="3_n875w"]
 [ext_resource type="PackedScene" uid="uid://ckkqonbjxl7ts" path="res://boss/boss.tscn" id="5_h3jfc"]
+[ext_resource type="PackedScene" uid="uid://bq8xopqab2xb0" path="res://checkpoint/checkpoint.tscn" id="6_vajxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgf7u"]
 texture = ExtResource("1_wbw04")
@@ -546,4 +547,7 @@ zoom = Vector2(2, 2)
 position = Vector2(153, -81)
 
 [node name="Boss" parent="." instance=ExtResource("5_h3jfc")]
-position = Vector2(317, 0)
+position = Vector2(317, 1)
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_vajxc")]
+position = Vector2(383, 0)
