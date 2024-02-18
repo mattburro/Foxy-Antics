@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dihf6jl4gkunf"]
+[gd_scene load_steps=7 format=3 uid="uid://dihf6jl4gkunf"]
 
 [ext_resource type="Texture2D" uid="uid://dbo8s4c403geq" path="res://assets/tiles/Terrain (16x16).png" id="1_wbw04"]
 [ext_resource type="Script" path="res://level_base/level_base.gd" id="1_ymxc8"]
 [ext_resource type="PackedScene" uid="uid://cej83oxkncb8p" path="res://player_camera/player_camera.tscn" id="2_ack6v"]
 [ext_resource type="PackedScene" uid="uid://ct4e5uvs38fek" path="res://player/player.tscn" id="3_n875w"]
-[ext_resource type="PackedScene" uid="uid://cl6xug6f0uylt" path="res://moving_platform/moving_platform.tscn" id="5_sdvpv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgf7u"]
 texture = ExtResource("1_wbw04")
@@ -581,13 +580,4 @@ zoom = Vector2(2, 2)
 [node name="Player" parent="." instance=ExtResource("3_n875w")]
 position = Vector2(183, -204)
 
-[node name="MovingPlatform" parent="." instance=ExtResource("5_sdvpv")]
-position = Vector2(184, -161)
-
-[node name="Point1" parent="MovingPlatform" index="2"]
-position = Vector2(0, 18)
-
-[node name="Point2" parent="MovingPlatform" index="3"]
-position = Vector2(0, -100)
-
-[editable path="MovingPlatform"]
+[node name="Paths" type="Node" parent="."]
