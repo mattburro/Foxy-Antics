@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfx3bcwnlgucm"]
+
+[ext_resource type="Script" path="res://scrolling_background/scrolling_parallax_layer.gd" id="1_8pbie"]
+
+[node name="ScrollingParallaxLayer" type="ParallaxLayer"]
+script = ExtResource("1_8pbie")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs70q7uulv6fg"]
+
+[ext_resource type="Script" path="res://scrolling_background/scrolling_background.gd" id="1_s7h08"]
+
+[node name="ScrollingBackground" type="ParallaxBackground"]
+script = ExtResource("1_s7h08")
