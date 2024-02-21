@@ -1,16 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dihf6jl4gkunf"]
+[gd_scene load_steps=8 format=3 uid="uid://dihf6jl4gkunf"]
 
 [ext_resource type="Texture2D" uid="uid://dbo8s4c403geq" path="res://assets/tiles/Terrain (16x16).png" id="1_wbw04"]
 [ext_resource type="Script" path="res://level_base/level_base.gd" id="1_ymxc8"]
 [ext_resource type="PackedScene" uid="uid://cej83oxkncb8p" path="res://player_camera/player_camera.tscn" id="2_ack6v"]
-[ext_resource type="Texture2D" uid="uid://dyf0squ03rac8" path="res://assets/backgrounds/game_background_1/layers/sky.png" id="2_u525o"]
-[ext_resource type="Texture2D" uid="uid://jalv02egvbrg" path="res://assets/backgrounds/game_background_1/layers/rocks_1.png" id="3_4yws7"]
-[ext_resource type="Texture2D" uid="uid://bkav82p202a7s" path="res://assets/backgrounds/game_background_1/layers/rocks_2.png" id="3_k458c"]
 [ext_resource type="PackedScene" uid="uid://ct4e5uvs38fek" path="res://player/player.tscn" id="3_n875w"]
-[ext_resource type="Texture2D" uid="uid://b0lo0l230gykr" path="res://assets/backgrounds/game_background_1/layers/clouds_3.png" id="4_iwopr"]
-[ext_resource type="Texture2D" uid="uid://dw6omm645wxfk" path="res://assets/backgrounds/game_background_1/layers/clouds_2.png" id="5_pyrx6"]
-[ext_resource type="Texture2D" uid="uid://bocdjhp0adg1i" path="res://assets/backgrounds/game_background_1/layers/clouds_1.png" id="6_rajm1"]
-[ext_resource type="Texture2D" uid="uid://c3fptqsk8ntt2" path="res://assets/backgrounds/game_background_1/layers/clouds_4.png" id="8_gjodf"]
 [ext_resource type="PackedScene" uid="uid://bs70q7uulv6fg" path="res://scrolling_background/scrolling_background.tscn" id="9_8y8bx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgf7u"]
@@ -575,76 +568,6 @@ sources/0 = SubResource("TileSetAtlasSource_lgf7u")
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ymxc8")
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_u525o")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.2, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_4yws7")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.3, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_iwopr")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.4, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_pyrx6")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.6, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("6_rajm1")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.7, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_k458c")
-offset = Vector2(0, -540)
-
-[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.8, 1)
-motion_mirroring = Vector2(1440, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("8_gjodf")
-offset = Vector2(0, -540)
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("9_8y8bx")]
 

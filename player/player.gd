@@ -104,9 +104,9 @@ func play_state_animation():
 
 func apply_hurt_jump():
 	set_state(PLAYER_STATE.HURT)
-	animation_player.play("hurt")
 	velocity = HURT_JUMP_VELOCITY
 	hurt_timer.start()
+	SignalManager.on_player_hit.emit(0)
 
 func go_invincible():
 	invincible = true
