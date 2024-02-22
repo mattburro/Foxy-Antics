@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dihf6jl4gkunf"]
+[gd_scene load_steps=10 format=3 uid="uid://dihf6jl4gkunf"]
 
 [ext_resource type="Texture2D" uid="uid://dbo8s4c403geq" path="res://assets/tiles/Terrain (16x16).png" id="1_wbw04"]
 [ext_resource type="Script" path="res://level_base/level_base.gd" id="1_ymxc8"]
 [ext_resource type="PackedScene" uid="uid://cej83oxkncb8p" path="res://player_camera/player_camera.tscn" id="2_ack6v"]
+[ext_resource type="PackedScene" uid="uid://cn35wxc5r0ofy" path="res://hud/hud.tscn" id="2_eskm7"]
 [ext_resource type="PackedScene" uid="uid://ct4e5uvs38fek" path="res://player/player.tscn" id="3_n875w"]
 [ext_resource type="AudioStream" uid="uid://cef6yfgwg2jkf" path="res://assets/sound/Flowing Rocks.ogg" id="6_hwgtw"]
 [ext_resource type="PackedScene" uid="uid://bs70q7uulv6fg" path="res://scrolling_background/scrolling_background.tscn" id="9_8y8bx"]
@@ -569,6 +570,10 @@ sources/0 = SubResource("TileSetAtlasSource_lgf7u")
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ymxc8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_eskm7")]
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("9_8y8bx")]
 
