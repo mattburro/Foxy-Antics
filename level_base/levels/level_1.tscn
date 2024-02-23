@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1au0sonwiedu"]
+
+[ext_resource type="PackedScene" uid="uid://dihf6jl4gkunf" path="res://level_base/level_base.tscn" id="1_ry5gd"]
+
+[node name="Level_1" instance=ExtResource("1_ry5gd")]
+
+[node name="TileMap" parent="." index="2"]
+layer_0/tile_data = PackedInt32Array(65531, 458752, 0, 65532, 458752, 0, 65533, 458752, 0, 65534, 458752, 0, 65535, 458752, 0, 0, 458752, 0, 1, 458752, 0, 2, 458752, 0, 3, 458752, 0, 4, 458752, 0)
+
+[node name="Boss" parent="." index="5"]
+position = Vector2(323, -1)
+
+[node name="Checkpoint" parent="." index="6"]
+position = Vector2(323, -1)
