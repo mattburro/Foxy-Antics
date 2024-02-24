@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn35wxc5r0ofy"]
+[gd_scene load_steps=6 format=3 uid="uid://cn35wxc5r0ofy"]
 
 [ext_resource type="LabelSettings" uid="uid://dlgw7vfyxawxl" path="res://assets/label_settings/GL_48_White.tres" id="1_4duem"]
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_86ih0"]
 [ext_resource type="Texture2D" uid="uid://sskbq56hk7sj" path="res://assets/items/pixel heart 2.png" id="2_ruyw8"]
 [ext_resource type="LabelSettings" uid="uid://bsblxmyqypc2e" path="res://assets/label_settings/LG_64_Blue.tres" id="3_1urws"]
 [ext_resource type="LabelSettings" uid="uid://da1od3uvbukrl" path="res://assets/label_settings/LG_24_Subtitle.tres" id="4_8qtwb"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_86ih0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -35,30 +37,30 @@ size_flags_horizontal = 3
 text = "0000"
 label_settings = ExtResource("1_4duem")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="HeartsContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="L1" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_ruyw8")
-stretch_mode = 5
-
-[node name="L2" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="L1" type="TextureRect" parent="MarginContainer/HBoxContainer/HeartsContainer"]
 layout_mode = 2
 texture = ExtResource("2_ruyw8")
 stretch_mode = 5
 
-[node name="L3" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="L2" type="TextureRect" parent="MarginContainer/HBoxContainer/HeartsContainer"]
 layout_mode = 2
 texture = ExtResource("2_ruyw8")
 stretch_mode = 5
 
-[node name="L4" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="L3" type="TextureRect" parent="MarginContainer/HBoxContainer/HeartsContainer"]
 layout_mode = 2
 texture = ExtResource("2_ruyw8")
 stretch_mode = 5
 
-[node name="L5" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="L4" type="TextureRect" parent="MarginContainer/HBoxContainer/HeartsContainer"]
+layout_mode = 2
+texture = ExtResource("2_ruyw8")
+stretch_mode = 5
+
+[node name="L5" type="TextureRect" parent="MarginContainer/HBoxContainer/HeartsContainer"]
 layout_mode = 2
 texture = ExtResource("2_ruyw8")
 stretch_mode = 5

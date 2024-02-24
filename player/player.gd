@@ -12,6 +12,7 @@ static var Instance: Player
 
 var state: PLAYER_STATE = PLAYER_STATE.IDLE
 var invincible: bool = false
+var lives: int = 1
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -106,7 +107,7 @@ func apply_hurt_jump():
 	set_state(PLAYER_STATE.HURT)
 	velocity = HURT_JUMP_VELOCITY
 	hurt_timer.start()
-	SignalManager.on_player_hit.emit(0)
+	SignalManager.on_player_hit.emit(lives)
 
 func go_invincible():
 	invincible = true
@@ -117,9 +118,20 @@ func apply_hit():
 	if invincible:
 		return
 	
+	reduce_lives()
 	go_invincible()
 	apply_hurt_jump()
 	SoundManager.play_sound(sound_player, SoundManager.SOUND_DAMAGE)
+
+func reduce_lives() -> bool:
+	lives -= 1
+	SignalManager.on_player_hit.emit(lives)
+	
+	if lives <= 0:
+		SignalManager.on_game_over.emit()
+		return false
+	else:
+		return true
 
 func on_hitbox_area_entered(area: Area2D):
 	apply_hit()

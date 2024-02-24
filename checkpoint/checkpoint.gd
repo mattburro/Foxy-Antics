@@ -11,7 +11,7 @@ func _ready():
 func on_boss_killed(_points: int):
 	animation_tree[TRIGGER_CONDITION] = true
 	monitoring = true
-	SoundManager.play_sound(sound, SoundManager.SOUND_WIN)
 
 func on_area_entered(area: Area2D):
-	print("Level complete!")
+	SoundManager.play_sound(sound, SoundManager.SOUND_WIN)
+	SignalManager.on_level_complete.emit()
