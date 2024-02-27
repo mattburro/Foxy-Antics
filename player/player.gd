@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 enum PLAYER_STATE { IDLE, RUN, JUMP, FALL, HURT }
 
 const GRAVITY: float = 1000.0
+const FALLEN_OFF: float = 100.0
 const RUN_SPEED: float = 120.0
 const JUMP_VELOCITY: float = -400.0
 const MAX_FALL_SPEED: float = 400.0
@@ -30,6 +31,8 @@ func _process(_delta):
 	update_debug_text()
 
 func _physics_process(delta):
+	check_fallen_off()
+	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
@@ -107,7 +110,6 @@ func apply_hurt_jump():
 	set_state(PLAYER_STATE.HURT)
 	velocity = HURT_JUMP_VELOCITY
 	hurt_timer.start()
-	SignalManager.on_player_hit.emit(lives)
 
 func go_invincible():
 	invincible = true
@@ -132,6 +134,11 @@ func reduce_lives() -> bool:
 		return false
 	else:
 		return true
+
+func check_fallen_off():
+	if global_position.y > FALLEN_OFF:
+		lives = 1
+		reduce_lives()
 
 func on_hitbox_area_entered(area: Area2D):
 	apply_hit()
