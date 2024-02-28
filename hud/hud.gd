@@ -6,8 +6,10 @@ var _hearts: Array
 @onready var level_complete = %LevelComplete
 @onready var game_over = %GameOver
 @onready var hearts_container = $MarginContainer/HBoxContainer/HeartsContainer
+@onready var score_label = %ScoreLabel
 
 func _ready():
+	SignalManager.on_score_updated.connect(on_score_updated)
 	SignalManager.on_level_complete.connect(on_level_complete)
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.on_player_hit.connect(on_player_hit)
@@ -25,6 +27,9 @@ func _process(delta):
 func show_hud():
 	Engine.time_scale = 0
 	end_screen.show()
+
+func on_score_updated(score: int):
+	score_label.text = str(score).lpad(4, "0")
 
 func on_level_complete():
 	show_hud()

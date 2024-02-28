@@ -9,6 +9,7 @@ var _level_scenes: = {}
 
 func _ready():
 	init_level_scenes()
+	ScoreManager.reset_score()
 
 func init_level_scenes():
 	for level_number in range(1, TOTAL_LEVELS + 1):
@@ -16,6 +17,7 @@ func init_level_scenes():
 
 func load_main_scene():
 	_current_level = 0
+	ScoreManager.reset_score()
 	get_tree().change_scene_to_packed(MAIN_SCENE)
 
 func load_next_level_scene():

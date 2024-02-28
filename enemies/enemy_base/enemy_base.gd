@@ -45,5 +45,4 @@ func on_screen_exited():
 	pass
 
 func on_hitbox_area_entered(area: Area2D):
-	print("Enemy hit: ", area.name)
 	die()
