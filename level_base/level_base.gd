@@ -8,4 +8,3 @@ func _ready():
 
 func _process(_delta):
 	player_camera.global_position = player.global_position
-	
