@@ -2,10 +2,10 @@ class_name Player extends CharacterBody2D
 
 enum PLAYER_STATE { IDLE, RUN, JUMP, FALL, HURT }
 
-const GRAVITY: float = 1000.0
+const GRAVITY: float = 700.0
 const FALLEN_OFF: float = 100.0
-const RUN_SPEED: float = 120.0
-const JUMP_VELOCITY: float = -400.0
+const RUN_SPEED: float = 70.0
+const JUMP_VELOCITY: float = -300.0
 const MAX_FALL_SPEED: float = 400.0
 const HURT_JUMP_VELOCITY: Vector2 = Vector2(0, -150.0)
 
@@ -13,7 +13,7 @@ static var Instance: Player
 
 var state: PLAYER_STATE = PLAYER_STATE.IDLE
 var invincible: bool = false
-var lives: int = 1
+var lives: int = 5
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -23,6 +23,7 @@ var lives: int = 1
 @onready var shooter = $Shooter
 @onready var invincible_timer = $InvincibleTimer
 @onready var hurt_timer = $HurtTimer
+@onready var hitbox = $Hitbox
 
 func _ready():
 	Instance = self
@@ -140,12 +141,19 @@ func check_fallen_off():
 		lives = 1
 		reduce_lives()
 
+func check_hit():
+	for area in hitbox.get_overlapping_areas():
+		if area.is_in_group("danger"):
+			apply_hit()
+			return
+
 func on_hitbox_area_entered(area: Area2D):
 	apply_hit()
 
 func on_invincible_timer_timeout():
 	invincible = false
 	animation_player_invincible.stop()
+	check_hit()
 
 func on_hurt_timer_timeout():
 	set_state(PLAYER_STATE.IDLE)

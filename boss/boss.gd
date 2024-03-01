@@ -10,6 +10,7 @@ var _invincible: bool = false
 
 @onready var animation_tree = $AnimationTree
 @onready var visuals = $Visuals
+@onready var hitbox = $Visuals/Hitbox
 
 func tween_hit():
 	var tween = get_tree().create_tween()
@@ -37,6 +38,7 @@ func take_damage():
 func on_activation_trigger_area_entered(area):
 	if not animation_tree[TRIGGER_CONDITION]:
 		animation_tree[TRIGGER_CONDITION] = true
+		hitbox.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func on_hitbox_area_entered(area):
 	take_damage()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1au0sonwiedu"]
 
 [ext_resource type="PackedScene" uid="uid://dihf6jl4gkunf" path="res://level_base/level_base.tscn" id="1_ry5gd"]
-[ext_resource type="PackedScene" uid="uid://cf8oa3ajvvo8j" path="res://enemies/snail/snail.tscn" id="2_hqvle"]
+[ext_resource type="PackedScene" uid="uid://bp6cwcg1x8hxa" path="res://floor_spikes/floor_spikes.tscn" id="2_er2ns"]
 
 [node name="Level_1" instance=ExtResource("1_ry5gd")]
 
@@ -15,5 +15,5 @@ lives = 1
 [node name="Checkpoint" parent="." index="6"]
 position = Vector2(188, -16)
 
-[node name="Snail" parent="." index="9" instance=ExtResource("2_hqvle")]
-position = Vector2(33, -26)
+[node name="FloorSpikes" parent="." index="9" instance=ExtResource("2_er2ns")]
+position = Vector2(-53, -27)

@@ -267,6 +267,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_e76hi")
 
 [node name="Hitbox" type="Area2D" parent="Visuals"]
+process_mode = 4
 collision_layer = 4
 collision_mask = 8
 
